@@ -1,0 +1,15 @@
+C:\Users\V\Desktop\private\Subjects\PRN221_3W\Course_Management\DataAccess\bin\Debug\net6.0\DataAccess.deps.json
+C:\Users\V\Desktop\private\Subjects\PRN221_3W\Course_Management\DataAccess\bin\Debug\net6.0\DataAccess.dll
+C:\Users\V\Desktop\private\Subjects\PRN221_3W\Course_Management\DataAccess\bin\Debug\net6.0\DataAccess.pdb
+C:\Users\V\Desktop\private\Subjects\PRN221_3W\Course_Management\DataAccess\bin\Debug\net6.0\BussinessObject.dll
+C:\Users\V\Desktop\private\Subjects\PRN221_3W\Course_Management\DataAccess\bin\Debug\net6.0\BussinessObject.pdb
+C:\Users\V\Desktop\private\Subjects\PRN221_3W\Course_Management\DataAccess\obj\Debug\net6.0\DataAccess.csproj.AssemblyReference.cache
+C:\Users\V\Desktop\private\Subjects\PRN221_3W\Course_Management\DataAccess\obj\Debug\net6.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\V\Desktop\private\Subjects\PRN221_3W\Course_Management\DataAccess\obj\Debug\net6.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\V\Desktop\private\Subjects\PRN221_3W\Course_Management\DataAccess\obj\Debug\net6.0\DataAccess.AssemblyInfo.cs
+C:\Users\V\Desktop\private\Subjects\PRN221_3W\Course_Management\DataAccess\obj\Debug\net6.0\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\V\Desktop\private\Subjects\PRN221_3W\Course_Management\DataAccess\obj\Debug\net6.0\DataAccess.csproj.CopyComplete
+C:\Users\V\Desktop\private\Subjects\PRN221_3W\Course_Management\DataAccess\obj\Debug\net6.0\DataAccess.dll
+C:\Users\V\Desktop\private\Subjects\PRN221_3W\Course_Management\DataAccess\obj\Debug\net6.0\refint\DataAccess.dll
+C:\Users\V\Desktop\private\Subjects\PRN221_3W\Course_Management\DataAccess\obj\Debug\net6.0\DataAccess.pdb
+C:\Users\V\Desktop\private\Subjects\PRN221_3W\Course_Management\DataAccess\obj\Debug\net6.0\ref\DataAccess.dll

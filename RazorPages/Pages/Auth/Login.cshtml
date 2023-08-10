@@ -1,0 +1,42 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Đăng Nhập";
+}
+@{
+    Layout = null; // Loại bỏ layout cho trang Login
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert-danger">@ViewBag.Message</div>
+    }
+<div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="mb-12">Course Management System</h2>
+            <form method="post">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="Username" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="Password" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

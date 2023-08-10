@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Course Management System</a>
+        <!-- Thanh điều hướng -->
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                <ul>
+                    <li>Quản lý sinh viên</li>
+                    <li>Quản lý học kỳ</li>
+                    <li>Quản lý khóa học</li>
+                    <li>Quản lý phòng học</li>
+                    <li>Quản lý chuyên ngành</li>
+                    <li>Quản lý điểm danh</li>
+                    <li>Quản lý buổi học</li>
+                </ul>
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <footer class="mt-4 text-center">
+        &copy; 2023 Dona Nguyen. All rights reserved.
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+@RenderSection("Scripts", required: false)
+</html>
