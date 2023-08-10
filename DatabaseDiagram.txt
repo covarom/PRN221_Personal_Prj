@@ -1,0 +1,248 @@
+-- Tạo database mới
+CREATE DATABASE CourseManagementDB;
+USE CourseManagementDB;
+
+-- Tạo bảng Semester (học kỳ)
+CREATE TABLE Semester (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+	Code NVARCHAR(100),
+    Name NVARCHAR(50) NOT NULL
+);
+
+-- Tạo bảng Subject (bộ môn)
+CREATE TABLE Subject (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL
+);
+
+-- Tạo bảng Major (chuyên ngành)
+CREATE TABLE Major (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(50) NOT NULL
+);
+
+-- Tạo bảng Course (các lớp học)
+CREATE TABLE Course (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Code NVARCHAR(10) NOT NULL,
+    SubjectId INT,
+    SemesterId INT,
+    MajorId INT,
+    FOREIGN KEY (SubjectId) REFERENCES Subject(Id),
+    FOREIGN KEY (SemesterID) REFERENCES Semester(Id),
+    FOREIGN KEY (MajorID) REFERENCES Major(Id)
+);
+
+-- Tạo bảng Room (phòng)
+CREATE TABLE Room (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(50) NOT NULL
+);
+
+-- Tạo bảng Session (buổi học)
+CREATE TABLE Session (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    CourseId INT,
+    Date DATE,
+    RoomId  INT,
+    FOREIGN KEY (CourseId) REFERENCES Course(Id),
+	FOREIGN KEY (RoomId) REFERENCES Room(Id)
+);
+
+CREATE TABLE Student (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+	Code NVARCHAR(50) ,
+    Name NVARCHAR(100) NOT NULL,
+    MajorId INT,
+    AvatarURL NVARCHAR(255), -- Thêm trường AvatarURL để chứa URL avatar
+    FOREIGN KEY (MajorID) REFERENCES Major(Id)
+);
+
+-- Tạo bảng StudentInCourse (học viên trong lớp học)
+CREATE TABLE StudentInCourse (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    CourseId INT,
+    StudentId INT,
+    FOREIGN KEY (CourseId) REFERENCES Course(Id),
+    FOREIGN KEY (StudentId) REFERENCES Student(Id) -- Thêm khoá ngoại tới bảng Student nếu có
+);
+
+-- Tạo bảng Attendance (điểm danh)
+CREATE TABLE Attendance (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    StudentInCourseId INT,
+    SessionId INT,
+    AttendanceDate DATE,
+    IsPresent BIT,
+    FOREIGN KEY (StudentInCourseId) REFERENCES StudentInCourse(Id),
+    FOREIGN KEY (SessionId) REFERENCES Session(Id)
+);
+
+
+-- Tạo bảng Account 
+CREATE TABLE Account (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Username NVARCHAR(50),
+    Password NVARCHAR(50)
+);
+
+-- Thêm trường CreatedAt, UpdatedAt, IsDeleted vào bảng Semester
+ALTER TABLE Semester
+ADD CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME DEFAULT GETDATE(),
+    IsDeleted BIT DEFAULT 0;
+
+-- Thêm trường CreatedAt, UpdatedAt, IsDeleted vào bảng Subject
+ALTER TABLE Subject
+ADD CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME DEFAULT GETDATE(),
+    IsDeleted BIT DEFAULT 0;
+
+-- Thêm trường CreatedAt, UpdatedAt, IsDeleted vào bảng Major
+ALTER TABLE Major
+ADD CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME DEFAULT GETDATE(),
+    IsDeleted BIT DEFAULT 0;
+
+-- Thêm trường CreatedAt, UpdatedAt, IsDeleted vào bảng Course
+ALTER TABLE Course
+ADD CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME DEFAULT GETDATE(),
+    IsDeleted BIT DEFAULT 0;
+
+-- Thêm trường CreatedAt, UpdatedAt, IsDeleted vào bảng Room
+ALTER TABLE Room
+ADD CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME DEFAULT GETDATE(),
+    IsDeleted BIT DEFAULT 0;
+
+-- Thêm trường CreatedAt, UpdatedAt, IsDeleted vào bảng Session
+ALTER TABLE Session
+ADD CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME DEFAULT GETDATE(),
+    IsDeleted BIT DEFAULT 0;
+
+-- Thêm trường CreatedAt, UpdatedAt, IsDeleted vào bảng Student
+ALTER TABLE Student
+ADD CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME DEFAULT GETDATE(),
+    IsDeleted BIT DEFAULT 0;
+
+-- Thêm trường CreatedAt, UpdatedAt, IsDeleted vào bảng StudentInCourse
+ALTER TABLE StudentInCourse
+ADD CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME DEFAULT GETDATE(),
+    IsDeleted BIT DEFAULT 0;
+
+-- Thêm trường CreatedAt, UpdatedAt, IsDeleted vào bảng Attendance
+ALTER TABLE Attendance
+ADD CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME DEFAULT GETDATE(),
+    IsDeleted BIT DEFAULT 0;
+
+-- Thêm trường CreatedAt, UpdatedAt vào bảng Account (Không cần trường IsDeleted với bảng Account)
+ALTER TABLE Account
+ADD CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME DEFAULT GETDATE();
+
+-- Insert DB
+
+INSERT INTO Account (Username, Password) VALUES
+    ('admin', 'admin123'),
+    ('user1', 'user123'),
+    ('user2', 'user123'),
+    ('user3', 'user123'),
+    ('user4', 'user123'),
+    ('user5', 'user123'),
+    ('user6', 'user123');
+
+
+-- Chèn dữ liệu mẫu vào bảng Semester
+INSERT INTO Semester (Code, Name) VALUES
+    ('SEM01', 'Semester 1'),
+    ('SEM02', 'Semester 2'),
+    ('SEM03', 'Semester 3'),
+    ('SEM04', 'Semester 4'),
+    ('SEM05', 'Semester 5'),
+    ('SEM06', 'Semester 6'),
+    ('SEM07', 'Semester 7');
+
+-- Chèn dữ liệu mẫu vào bảng Subject
+INSERT INTO Subject (Name) VALUES
+    ('Math'),
+    ('Physics'),
+    ('Chemistry'),
+    ('Biology'),
+    ('History'),
+    ('Literature'),
+    ('Programming');
+
+-- Chèn dữ liệu mẫu vào bảng Major
+INSERT INTO Major (Name) VALUES
+    ('Computer Science'),
+    ('Engineering'),
+    ('Biology'),
+    ('Business'),
+    ('History'),
+    ('Literature'),
+    ('Mathematics');
+
+-- Chèn dữ liệu mẫu vào bảng Course
+INSERT INTO Course (Code, SubjectId, SemesterId, MajorId) VALUES
+    ('CSE101', 7, 1, 1),
+    ('ENG201', 6, 2, 2),
+    ('BIO301', 5, 3, 3),
+    ('BUS401', 4, 4, 4),
+    ('HIS501', 3, 5, 5),
+    ('LIT601', 2, 6, 6),
+    ('MAT701', 1, 7, 7);
+
+-- Chèn dữ liệu mẫu vào bảng Room
+INSERT INTO Room (Name) VALUES
+    ('Room A'),
+    ('Room B'),
+    ('Room C'),
+    ('Room D'),
+    ('Room E'),
+    ('Room F'),
+    ('Room G');
+
+-- Chèn dữ liệu mẫu vào bảng Student
+INSERT INTO Student (Code, Name, MajorId, AvatarURL) VALUES
+    (N'S001', 'John Doe', 1, 'https://example.com/avatar1.jpg'),
+    (N'S002', 'Jane Smith', 2, 'https://example.com/avatar2.jpg'),
+    (N'S003', 'Michael Johnson', 3, 'https://example.com/avatar3.jpg'),
+    (N'S004', 'Emily Williams', 4, 'https://example.com/avatar4.jpg'),
+    (N'S005', 'William Brown', 5, 'https://example.com/avatar5.jpg'),
+    (N'S006', 'Emma Taylor', 6, 'https://example.com/avatar6.jpg'),
+    (N'S007', 'Daniel Martinez', 7, 'https://example.com/avatar7.jpg');
+
+-- Chèn dữ liệu mẫu vào bảng StudentInCourse
+INSERT INTO StudentInCourse (CourseId, StudentId) VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7);
+
+INSERT INTO Session (CourseId, Date, RoomId) VALUES
+    (1, '2023-08-01', 1),
+    (2, '2023-08-02', 2),
+    (3, '2023-08-03', 3),
+    (4, '2023-08-04', 4),
+    (5, '2023-08-05', 5),
+    (6, '2023-08-06', 6),
+    (7, '2023-08-07', 7);
+
+-- Chèn dữ liệu mẫu vào bảng Attendance
+INSERT INTO Attendance (StudentInCourseId, SessionId, AttendanceDate, IsPresent) VALUES
+    (1, 1, '2023-08-01', 1),
+    (2, 2, '2023-08-02', 1),
+    (3, 3, '2023-08-03', 0),
+    (4, 4, '2023-08-04', 1),
+    (5, 5, '2023-08-05', 0),
+    (6, 6, '2023-08-06', 1),
+    (7, 7, '2023-08-07'
+
